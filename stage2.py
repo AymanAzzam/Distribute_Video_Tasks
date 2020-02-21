@@ -18,14 +18,14 @@ def consumer():
         #Receive Data
         rec_data = receiver.recv_pyobj()
         print("Stage2 Received Data")
-        if 'image' and 'frame' in rec_data:
-            bin_img = rec_data['image']
+        if 'binaryimage' and 'framenumber' in rec_data:
+            bin_img = rec_data['binaryimage']
             #Process Data
             major = cv.__version__.split('.')[0]
             if major == '3': img, bounding_boxes, hierarchy= cv.findContours(bin_img, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
             else: bounding_boxes, hierarchy= cv.findContours(bin_img, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
             #Send Data
-            sent_data = {'frame':rec_data['frame'],'contours':bounding_boxes}
+            sent_data = {'frame':rec_data['framenumber'],'contours':bounding_boxes}
             sender.send_pyobj(sent_data)
 
         else:
