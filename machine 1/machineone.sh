@@ -12,7 +12,7 @@ port_in=5557
 port_out=5558
 
 echo " port_in is $port_in"
-echo " port_out is $port_out" 
+echo " starting port_out is $port_out" 
  
 
 python producer.py $directory &
