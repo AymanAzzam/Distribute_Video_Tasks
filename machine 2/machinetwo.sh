@@ -11,8 +11,8 @@ echo "socket 2 is initially $socket2_collect"
 for (( i=0; i<$novertwo; i++))
 do
 	python collector1.py $socket1_collect $socket2_collect &
-	socket1=$(($socket1 + 1))
-	socket2=$(($socket2 + 1))
+	socket1_collect=$(($socket1_collect + 1))
+	socket2_collect=$(($socket2_collect + 1))
 done
 
 socket1_stage2=$socket2_collect
