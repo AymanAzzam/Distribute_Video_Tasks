@@ -2,21 +2,6 @@ n=$1
 novertwo=$(((($1 + 1))/2))
 ip=$2
 
-socket1_collect=5558
-echo "socket 1 is initially $socket1_collect"
-
-socket2_collect=$(((($socket1_collect)) + (($novertwo))))
-echo "socket 2 is initially $socket2_collect"
-
-socket2_collect_temp=$socket2_collect
-
-for (( i=0; i<$novertwo; i++))
-do
-	python collector1.py $socket1_collect $socket2_collect $ip &
-	socket1_collect=$(($socket1_collect + 1))
-	socket2_collect=$(($socket2_collect + 1))
-done
-
 socket1_stage2=$socket2_collect_temp
 socket2_stage2=$(((($socket1_stage2)) + (($novertwo))))
 echo "socket stage is initially $socket2_stage2"

@@ -6,21 +6,20 @@ from skimage.filters import threshold_otsu
 from skimage.color import rgb2gray
 import sys
 
-host = sys.argv[3]
+
 
 
 
 def consumer(port_in, port_out):
 	
 	my_id = random.randrange(10000)
-	#print("consumer_1 id number %i is created" %my_id)
-
+	
 	context = zmq.Context()
 	consumer_reciever = context.socket(zmq.PULL)
-	consumer_reciever.connect("tcp://"+ host + ":%s" %port_in)
-	
+	consumer_reciever.connect("tcp://127.0.0.1:%s" %port_in)
+
 	consumer_sender = context.socket(zmq.PUSH)
-	consumer_sender.connect("tcp://"+ host + ":%s" %port_out)
+	consumer_sender.connect("tcp://127.0.0.1:%s" %port_out)
 
 	#print ("before entering the while looop")
 	while True:
@@ -37,6 +36,6 @@ def consumer(port_in, port_out):
 		consumer_sender.send_pyobj(message)
 
 
-consumer(int(sys.argv[1]), int(sys.argv[2]))  		
+consumer(int(sys.argv[1]), int(sys.argv[2]))  
 
 

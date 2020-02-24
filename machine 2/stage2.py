@@ -3,7 +3,7 @@ import cv2 as cv
 import sys
 import random
 
-id1 = "127.0.0.1";  port1 = sys.argv[1]
+id1 = sys.argv[3];  port1 = sys.argv[1]
 id2 = "127.0.0.1";  port2 = sys.argv[2]
 
 def consumer():

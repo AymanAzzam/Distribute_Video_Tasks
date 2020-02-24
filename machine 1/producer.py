@@ -19,7 +19,7 @@ def producer(video_directory) :
 	zmq_socket_send.bind("tcp://"+ host + ":%s" %port_out)
 
 	frame_number=0
-	#print ("before entering the while looop")
+	print ("before entering the while looop")
 	while(capture.isOpened() ) :
 		ret, frame = capture.read()	
 		if (ret == True):
