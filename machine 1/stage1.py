@@ -6,7 +6,7 @@ from skimage.filters import threshold_otsu
 from skimage.color import rgb2gray
 import sys
 
-host = "127.0.0.1"
+host = sys.argv[3]
 
 
 
