@@ -8,8 +8,8 @@ id2 = sys.argv[3];  port2 = sys.argv[2]
 def producer():
 
     my_id = random.randrange(10000)
-    #print("collector_1 id number ",my_id," is created")
-    
+    print("collector1_id %i is created" %my_id)
+  
     context = zmq.Context()
 
     receiver = context.socket(zmq.PULL)

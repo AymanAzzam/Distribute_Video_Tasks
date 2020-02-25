@@ -11,7 +11,8 @@ import sys
 def consumer(port_in, port_out):
 	
 	my_id = random.randrange(10000)
-	
+	print("consumer1_id %i is created" %my_id)
+
 	context = zmq.Context()
 	consumer_reciever = context.socket(zmq.PULL)
 	consumer_reciever.connect("tcp://127.0.0.1:%s" %port_in)

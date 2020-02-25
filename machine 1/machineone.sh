@@ -1,3 +1,8 @@
+if (( $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ { print $2}' | wc -l) > 0 ))
+then
+	kill -9 $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ { print $2}')
+fi
+
 #machine one shell script
 
 #echo "starting Machine1 script "
@@ -17,7 +22,6 @@ temp_port_in=$port_out
 #echo "port_in is $port_in"
 #echo "starting port_out is $port_out" 
  
-
 python producer.py $directory &
 
 for (( i=0; i<$n; i++))
@@ -30,4 +34,4 @@ do
 	fi
 done
 
-./collector1.sh $n $temp_port_in 6000 $host
+./collector1.sh $n $temp_port_in 6000 $host &

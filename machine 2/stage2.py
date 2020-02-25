@@ -10,7 +10,7 @@ id2 = "127.0.0.1";  port2 = sys.argv[2]
 def consumer():
 
     my_id = random.randrange(10000)
-    #print("consumer2_id",my_id,"is created")
+    print("consumer2_id %i is created" %my_id)
 
     context = zmq.Context()
     
