@@ -1,33 +1,33 @@
 Frame Number 0 
 Contours: 17
 
+Frame Number 4 
+Contours: 24
+
+Frame Number 10 
+Contours: 27
+
 Frame Number 1 
 Contours: 26
-
-Frame Number 2 
-Contours: 25
 
 Frame Number 3 
 Contours: 19
 
-Frame Number 4 
-Contours: 24
-
-Frame Number 5 
-Contours: 23
-
-Frame Number 6 
-Contours: 32
+Frame Number 2 
+Contours: 25
 
 Frame Number 7 
+Contours: 23
+
+Frame Number 5 
 Contours: 23
 
 Frame Number 8 
 Contours: 23
 
+Frame Number 6 
+Contours: 32
+
 Frame Number 9 
 Contours: 34
-
-Frame Number 10 
-Contours: 27
 
