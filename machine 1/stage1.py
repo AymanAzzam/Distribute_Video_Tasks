@@ -1,9 +1,7 @@
 import zmq
 import random
 import matplotlib.pyplot as plt
-import cv2
-from skimage.filters import threshold_otsu
-from skimage.color import rgb2gray
+import cv2 as cv
 import sys
 
 
@@ -25,12 +23,15 @@ def consumer(port_in, port_out):
 	while True:
 		recieved = consumer_reciever.recv_pyobj()
 		print("consumer1_id %i recieved frame number %s" %(my_id,recieved['framenumber']))
-
-		gray = rgb2gray(recieved['image'])
-		thresh = threshold_otsu(gray)
-		binary = gray <= thresh
-		plt.imshow(binary)
-		plt.show()
+		
+		gray = cv.cvtColor(recieved['image'],cv.COLOR_BGR2GRAY)
+		ret,binary = cv.threshold(gray,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+		
+		#gray = rgb2gray(recieved['image'])
+		#thresh = threshold_otsu(gray)
+		#binary = gray <= thresh
+		#plt.imshow(binary)
+		#plt.show()
 
 		message= {'binaryimage':binary, 'framenumber': recieved['framenumber']}
 		consumer_sender.send_pyobj(message)

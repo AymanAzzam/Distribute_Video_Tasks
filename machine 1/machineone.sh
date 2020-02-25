@@ -13,10 +13,9 @@ port_out=5558
 host=$3
 
 temp_port_in=$port_out
-temp
 
-echo " port_in is $port_in"
-echo " starting port_out is $port_out" 
+echo "port_in is $port_in"
+echo "starting port_out is $port_out" 
  
 
 python producer.py $directory &
@@ -31,4 +30,4 @@ do
 	fi
 done
 
-./collector1.sh $n $temp_port_in 7000 $host
+./collector1.sh $n $temp_port_in 6000 $host
