@@ -6,7 +6,7 @@ port_out=$3
 for (( i=0; i<$n; i++))
 do
 	echo "in the foor loop number " $i
-	python stage1.py $port_in $port_out #$host
+	python3 stage1.py $port_in $port_out #$host
 	if [ $(($i % 2))  -eq 1 ]
 	then
 		port_out=$(($port_out + 1))

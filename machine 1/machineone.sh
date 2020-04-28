@@ -15,6 +15,7 @@ directory=$2
 
 port_in=5557
 port_out=5558
+#ip of machine 2
 host=$3
 
 temp_port_in=$port_out
@@ -22,12 +23,12 @@ temp_port_in=$port_out
 #echo "port_in is $port_in"
 #echo "starting port_out is $port_out" 
  
-python producer.py $directory &
+python3 producer.py $directory &
 
 for (( i=0; i<$n; i++))
 do
 	#echo "in the foor loop number " $i
-	python stage1.py $port_in $port_out &
+	python3 stage1.py $port_in $port_out &
 	if [ $(($i % 2))  -eq 1 ]
 	then
 		port_out=$(($port_out + 1))

@@ -16,7 +16,15 @@ def producer():
 	while True:
 		data = receiver.recv_pyobj()	
 		print("collector2_id received frame number %s" %(data['framenumber']))
+		
 		#f.write("Frame Number %i \nContours: %i\n\n"%(data['framenumber'],5))
+		################# trial code #######################
+		f = open("output.txt","a")
 		f.write("Frame Number %i \nContours: %s\n\n"%(data['framenumber'],len(data['contours'])))
+		f.close()
+		######################end trial#####################
+		#f.write("Frame Number %i \nContours: %s\n\n"%(data['framenumber'],len(data['contours'])))
+		#f.flush()
 
 producer()
+

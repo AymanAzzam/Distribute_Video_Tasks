@@ -1,8 +1,8 @@
 import zmq
 import random
-import matplotlib.pyplot as plt
 import cv2 as cv
 import sys
+import matplotlib.pyplot as plt
 
 
 
