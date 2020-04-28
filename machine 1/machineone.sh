@@ -1,7 +1,30 @@
-if (( $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ { print $2}' | wc -l) > 0 ))
-then
-	kill -9 $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ { print $2}')
-fi
+#if (( $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ { print $2}' | wc -l) > 0 ))
+#then
+	#kill -9 $(ps -eo comm,pid,etimes | awk '/^ZMQbg/ {if ($3 > 300) { print $2}}')
+	# /3 di ana elli 7ataha delw2ti
+#	kill -9 $(ps -eo comm,pid,etimes | awk '/^ZMQbg/3 { print $2}')
+#fi
+
+
+#####################try this##########################
+
+intexit() {
+    # Kill all subprocesses (all processes in the current process group)
+    kill -HUP -$$
+}
+
+hupexit() {
+    # HUP'd (probably by intexit)
+    echo
+    echo "Interrupted"
+    exit
+}
+
+trap hupexit HUP
+trap intexit INT
+
+#####################end trial ##########################
+
 
 #machine one shell script
 
@@ -23,12 +46,12 @@ temp_port_in=$port_out
 #echo "port_in is $port_in"
 #echo "starting port_out is $port_out" 
  
-python3 producer.py $directory &
+python producer.py $directory &
 
 for (( i=0; i<$n; i++))
 do
 	#echo "in the foor loop number " $i
-	python3 stage1.py $port_in $port_out &
+	python stage1.py $port_in $port_out &
 	if [ $(($i % 2))  -eq 1 ]
 	then
 		port_out=$(($port_out + 1))
@@ -36,3 +59,5 @@ do
 done
 
 ./collector1.sh $n $temp_port_in 6000 $host &
+
+wait

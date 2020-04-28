@@ -1,9 +1,11 @@
 import zmq
 import sys
+import os
 
 id = "127.0.0.1";  port = sys.argv[1]
 
-f = open("output.txt","w")
+if os.path.exists("output.txt"):
+	os.remove("output.txt")
 
 def producer():
 
@@ -12,9 +14,14 @@ def producer():
 	context = zmq.Context()
 	receiver = context.socket(zmq.PULL)
 	receiver.bind("tcp://%s:%s"%(id,port))
+	receiver.setsockopt(zmq.RCVTIMEO, 60000)
 
 	while True:
-		data = receiver.recv_pyobj()	
+		try :
+			data = receiver.recv_pyobj()	
+		except zmq.error.Again as e:
+				#print('Alived rrrrece timed out ')
+				break	
 		print("collector2_id received frame number %s" %(data['framenumber']))
 		
 		#f.write("Frame Number %i \nContours: %i\n\n"%(data['framenumber'],5))
